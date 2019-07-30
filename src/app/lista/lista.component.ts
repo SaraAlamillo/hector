@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Lenguaje } from "../lenguaje";
+import { LenguajeService } from "../lenguaje.service";
 
 @Component({
   selector: 'app-lista',
@@ -9,18 +10,18 @@ import { Lenguaje } from "../lenguaje";
 
 export class ListaComponent implements OnInit {
 
-  Lenguajes: Lenguaje[] = [
-    { id: 0, name: "JavaScript" },
-    { id: 1, name: "PHP" },
-    { id: 2, name: "C#" },
-    { id: 3, name: "Delphi" }
-  ];
+  Lenguajes: Lenguaje[];
   selectedLenguaje: Lenguaje;
   LastId: number = 3; 
 
-  constructor() { }
+  constructor(private LenguajeService: LenguajeService) { }
 
   ngOnInit() {
+    this.getLenguajes();
+  }
+
+  getLenguajes(): void {
+ this.LenguajeService.getLenguajes().subscribe(Lenguajes => this.Lenguajes = Lenguajes);
   }
 
   onSelect(L: Lenguaje): void {
