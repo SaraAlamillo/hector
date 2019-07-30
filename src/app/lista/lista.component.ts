@@ -15,10 +15,16 @@ export class ListaComponent implements OnInit {
     { id: 2, name: "C#" },
     { id: 3, name: "Delphi" }
   ];
+  selectedLenguaje: Lenguaje;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  
+  onSelect(L: Lenguaje): void {
+    this.selectedLenguaje = L;
   }
 
 }

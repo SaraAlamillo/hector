@@ -1,4 +1,22 @@
 <h2>Lenguajes</h2>
-<ul>
-  <li *ngFor="let Lenguaje of Lenguajes">{{Lenguaje.id}} - {{Lenguaje.name}}</li>
-</ul>
+<table border="1">
+  <tr>
+    <td>ID</td>
+    <td>Nombre</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let Lenguaje of Lenguajes" [class.selected]="Lenguaje === selectedLenguaje">
+    <td>{{Lenguaje.id}}</td>
+    <td>{{Lenguaje.name}}</td>
+    <td><button (click)="onSelect(Lenguaje)">Modificar</button></td>
+    <td><button>Eliminar</button></td>
+  </tr>
+</table>
+<button>Añadir</button>
+
+<div *ngIf="selectedLenguaje">
+  <h2>Detalles de {{selectedLenguaje.name | uppercase}}</h2>
+  <p>ID: {{selectedLenguaje.id}}</p>
+  <p>Nombre: <input [(ngModel)]="selectedLenguaje.name" placeholder="Nombre"/></p>
+</div>
