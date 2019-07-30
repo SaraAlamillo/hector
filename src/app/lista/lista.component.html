@@ -1,4 +1,5 @@
 <h2>Lenguajes</h2>
+<div>
 <table border="1">
   <tr>
     <td>ID</td>
@@ -10,13 +11,18 @@
     <td>{{Lenguaje.id}}</td>
     <td>{{Lenguaje.name}}</td>
     <td><button (click)="onSelect(Lenguaje)">Modificar</button></td>
-    <td><button>Eliminar</button></td>
+    <td><button (click)="delete(Lenguaje.id)">Eliminar</button></td>
   </tr>
 </table>
-<button>Añadir</button>
+</div>
 
 <div *ngIf="selectedLenguaje">
   <h2>Detalles de {{selectedLenguaje.name | uppercase}}</h2>
   <p>ID: {{selectedLenguaje.id}}</p>
   <p>Nombre: <input [(ngModel)]="selectedLenguaje.name" placeholder="Nombre"/></p>
+</div>
+
+<div>
+  <h2>Nuevo lenguaje</h2>
+  <p>Nombre: <input #LenguajeName placeholder="Nombre"/> <button (click)="add(LenguajeName.value); LenguajeName.value=''">Añadir</button></p>
 </div>

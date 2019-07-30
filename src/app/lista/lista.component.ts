@@ -16,15 +16,28 @@ export class ListaComponent implements OnInit {
     { id: 3, name: "Delphi" }
   ];
   selectedLenguaje: Lenguaje;
+  LastId: number = 3; 
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  
   onSelect(L: Lenguaje): void {
     this.selectedLenguaje = L;
+  }
+
+  add(Name: string): void {
+    this.LastId += 1;
+    this.Lenguajes.push({ id: this.LastId, name: Name });
+  }
+
+  delete(ID: number): void {
+    this.Lenguajes.forEach((item, index) => {
+      if (item.id == ID) {
+        this.Lenguajes.splice(index, 1);
+      }
+    });
   }
 
 }
