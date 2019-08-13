@@ -12,7 +12,6 @@ export class ListaComponent implements OnInit {
 
   Lenguajes: Lenguaje[];
   selectedLenguaje: Lenguaje;
-  LastId: number = 3; 
 
   constructor(private LenguajeService: LenguajeService) { }
 
@@ -21,7 +20,7 @@ export class ListaComponent implements OnInit {
   }
 
   getLenguajes(): void {
- this.LenguajeService.getLenguajes().subscribe(Lenguajes => this.Lenguajes = Lenguajes);
+    this.LenguajeService.getLenguajes().subscribe(Lenguajes => this.Lenguajes = Lenguajes);
   }
 
   onSelect(L: Lenguaje): void {
@@ -29,16 +28,11 @@ export class ListaComponent implements OnInit {
   }
 
   add(Name: string): void {
-    this.LastId += 1;
-    this.Lenguajes.push({ id: this.LastId, name: Name });
+    this.LenguajeService.add(Name);
   }
 
   delete(ID: number): void {
-    this.Lenguajes.forEach((item, index) => {
-      if (item.id == ID) {
-        this.Lenguajes.splice(index, 1);
-      }
-    });
+    this.LenguajeService.delete(ID);
   }
 
 }

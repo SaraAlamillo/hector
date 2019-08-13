@@ -15,10 +15,25 @@ export class LenguajeService {
     { id: 3, name: "Delphi" }
   ];
 
+  LastId: number = 3;
+
   constructor() { }
 
-getLenguajes(): Observable<Lenguaje[]> {
-  return of(this.Lenguajes);
-}
+  getLenguajes(): Observable<Lenguaje[]> {
+    return of(this.Lenguajes);
+  }
+
+  add(Name: string): void {
+    this.LastId += 1;
+    this.Lenguajes.push({ id: this.LastId, name: Name });
+  }
+
+  delete(ID: number): void {
+    this.Lenguajes.forEach((item, index) => {
+      if (item.id == ID) {
+        this.Lenguajes.splice(index, 1);
+      }
+    });
+  }
 
 }
