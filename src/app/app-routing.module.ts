@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from "./home/home.component";
 import { GraficoComponent } from './grafico/grafico.component';
 import { ListaComponent } from './lista/lista.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
   {
     path: "",
     redirectTo: "/home",
-    pathMatch: "full"
+    pathMatch: "full",
   },
   {
     path: "grafico",
@@ -20,8 +21,15 @@ const routes: Routes = [
   },
   {
     path: "lista",
-    component: ListaComponent
-  }
+    component: ListaComponent,
+    canActivate: [
+      AuthGuard
+    ]
+  },
+  {
+    path: "login",
+    component: GraficoComponent
+  },
 ];
 
 @NgModule({
